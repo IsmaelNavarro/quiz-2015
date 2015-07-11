@@ -31,3 +31,8 @@ header, nav, section, footer{
 nav span{
 	margin: 0 10px 0 0;
 }
+
+.miFoto{
+	height: 180px;
+	width: auto;
+}
