@@ -1,2 +1,5 @@
 node_modules/
 .env
+index.bat
+models/models.js.rej
+prueba.exe.lnk
