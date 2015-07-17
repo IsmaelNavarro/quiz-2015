@@ -6,6 +6,7 @@ exports.load = function(req, res, next, quizId) {
 		function(quiz) {
 			if (quiz) {
 				req.quiz = quiz;
+				next();
 			}
 			else{
 				next (new Error("No existe quizID=" + quizId));
@@ -31,6 +32,6 @@ exports.answer = function(req, res) {
 	var resultado = "Incorrecto";
 	if(req.query.respuesta === req.quiz.respuesta)
 		resultado = "Correcto"; 
-	
+
 	res.render("quizes/answer", {quiz: req.quiz, respuesta: resultado});
 };
