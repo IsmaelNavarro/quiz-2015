@@ -32,6 +32,11 @@ nav span{
 	margin: 0 10px 0 0;
 }
 
+#ErrorMsgs{
+	color: #f61;
+	font-size: smaler;
+}
+
 .miFoto{
 	height: 180px;
 	width: auto;
