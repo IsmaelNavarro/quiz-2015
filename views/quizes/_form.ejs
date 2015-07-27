@@ -9,14 +9,14 @@
 <p>
 	<label for="tema" class="rem">Temática:</label>
 	<select id="tema" name="quiz[tema]">
-	  <option value="otro" selected>Otro</option>
-	  <option value="humanidades">Humanidades</option>
-	  <option value="ocio">Ocio</option>
-	  <option value="ciencia">Ciencia</option>
-	  <option value="tecnologia">Tecnología</option>
-	</select>
+		 <option value="otro" <%= quiz.tema === 'otro' ? 'selected': '' %> >Otro</option>
+		 <option value="humanidades" <%= (quiz.tema === 'humanidades' ? 'selected': '') %> > Humanidades</option>
+		 <option value="ocio" <%= (quiz.tema === 'ocio' ? 'selected': '') %> >Ocio</option>
+		 <option value="ciencia" <%= (quiz.tema === 'ciencia' ? 'selected': '') %> >Ciencia</option>
+		 <option value="tecnologia" <%= (quiz.tema === 'tecnologia' ? 'selected': '') %> >Tecnología</option>
+	 </select>
 </p>
 
-<a href="/quizes"><button>Cancelar</button></a>
+<a href="/quizes"><button type="button">Cancelar</button></a>
 
 <input type="submit">
