@@ -33,8 +33,26 @@ app.use(function(req, res, next) {
         req.session.redir = req.path;
     }
 
+    //Hace las variabes visibles en las vistas
     res.locals.session = req.session;
     next();
+});
+
+//MW de auto-logout
+app.use(function(req, res, next) {
+    
+    //Comprobamos que no hayan pasado más de dos minutos desde la última conexion y que exista un usuario logeado
+    var fechaActual = new Date().getTime();
+    if(req.session.user && req.session.conexion < fechaActual-120000){
+        delete req.session.user;
+        res.redirect("/");
+    }
+    else{
+      //Guardamos la hora del sistema de la petición si el usuario esta conectado
+        req.session.conexion = new Date().getTime();
+        next();  
+    }
+    
 });
 
 app.use('/', routes);

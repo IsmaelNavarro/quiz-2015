@@ -107,3 +107,27 @@ exports.destroy = function(req, res) {
 		res.redirect("/quizes");
 	}).catch(function(error) {next(error)});
 };
+
+//GET /quizes/statistics
+exports.statistics = function(req, res) {
+	var cantidadPreguntas=0;
+	var cantidadComentarios=0;
+	var cantidadPreguntasSinComentarios=0;
+
+	models.Quiz.findAll({include: [{model: models.Comment}]}).then(function(quizes) {
+		var cantidadPreguntas = quizes.length;
+
+		for(index in quizes){
+			if(quizes[index].Comments.length == 0)
+				cantidadPreguntasSinComentarios++;
+
+			cantidadComentarios+=quizes[index].Comments.length;
+		}
+
+		res.render("quizes/statistics", {cantidadPreguntas: cantidadPreguntas, 
+										 cantidadComentarios: cantidadComentarios, 
+										 cantidadPreguntasSinComentarios: cantidadPreguntasSinComentarios,
+										 errors: []});
+
+	}).catch(function(error) {next(error);});;
+};
